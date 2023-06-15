@@ -6,14 +6,12 @@ let tweets =[
     {
         id:"1",
         text:"hello",
-        author: {
-            id:"1",
-            username: "jung"
-        }
+        userId:"2",
     },
     {
         id:"2",
         text:"hi",
+        userId:"1",
     },
 ];
 
@@ -83,13 +81,21 @@ const resolvers = {
       },
       User: {
         //fullName(root){
+        firstName({firstName}){
+          return firstName;
+        },
         fullName({firstName,lastName}){
    
           console.log(`${firstName}`);
           console.log(`${lastName}`);
           return `${firstName} ${lastName}`;
-        }
-      }
+        },
+      },
+      Tweet:{
+        author({userId}){
+          return users.find(user=>user.id===userId);
+        },
+      },
   }
 
 const server = new ApolloServer({ typeDefs, resolvers });
