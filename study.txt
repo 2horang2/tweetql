@@ -65,3 +65,22 @@ mutation {
   }
 }
 
+Resolver 함수에는 parent(root or source), args, context, info 의 네 가지 인수가 순서대로 전달됩니다.
+```
+User: {
+fullName: (parent, args, context, info) => {
+return "hello";
+},
+},
+```
+
+      User: {
+        fullName(root){
+          console.log(root);
+          return "hello";
+        }
+      }
+
+      >> 
+      { id: '1', firstName: 'nico', lastName: 'las' }
+      { id: '2', firstName: 'Elon', lastName: 'Mask' }
