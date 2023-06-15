@@ -84,3 +84,6 @@ return "hello";
       >> 
       { id: '1', firstName: 'nico', lastName: 'las' }
       { id: '2', firstName: 'Elon', lastName: 'Mask' }
+  
+  //https://studio.apollographql.com/sandbox/schema/reference
+  //https://altair.sirmuel.design/
