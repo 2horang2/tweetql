@@ -87,3 +87,10 @@ return "hello";
   
   //https://studio.apollographql.com/sandbox/schema/reference
   //https://altair.sirmuel.design/
+
+
+  json검증을 위해서
+  콘솔창에 const aa = {};
+  > Object.keys(aa)
+  하면 정제된 키값들이 나옴?ㅇㅅㅇ
+  
