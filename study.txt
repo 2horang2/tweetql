@@ -1,0 +1,96 @@
+
+#0
+npm i init
+npm i appllo-server graphql
+npm i nodemon -D
+touch server.js
+touch .gitignore
+git init
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+
+  "type": "module"
+
+import { ApolloServer, gql } from "apollo-server";
+const { ApolloServer, gql } = require("apollo-server");
+
+npm run dev
+
+#1.1
+const { ApolloServer, gql } = require("apollo-server");
+gql은 미리 data type을 알고 있어야 된다
+Define your GraphQL schema (GraphQL 스키마 정의)
+모든 GraphQL 서버(Apollo Server 포함)는 스키마를 사용하여 클라이언트가 쿼리할 수 있는 데이터 구조를 정의합니다.
+(스키마는 type definitions의 모음입니다.)
+
+
+#1.2
+GraphQL에 대한 대부분은 데이터 fetching이지만, 
+서버 측 데이터를 수정할 수 있는 방법이 필요합니다.
+서버 측 데이터를 수정하는 모든 작업은 mutation을 통해 보내야 한다는 
+규칙을 설정하는 것이 유용합니다.
+
+
+#1.4
+아래 Character에 name에 String 타입을 사용하고 느낌표 !를 추가하여 Non-Null로 표시합니다.
+Non-Null로 표시하게 되면 서버가 항상 이 필드에 대해 null이 아닌 값을 반환할 것으로 예상합니다. 그래서 null 값을 얻게 되면 클라이언트에게 문제가 있음을 알립니다.
+
+
+#recap
+- 아폴로 서버를 실행하기 위해서는 반드시 최소 1개의 Query가 필요합니다.
+- type Query는 가장 기본적인 타입입니다.
+- Query에 넣는 필드들은 request할 수 있는 것들이 됩니다.
+- !를 쓰지 않으면 해당 필드는 nullable field가 됩니다. (null값을 가질 수 있는 필드)
+
+
+#1.6
+Resolvers
+resolver 함수는 데이터베이스에 액세스한 다음 데이터를 반환합니다.
+
+{
+  allTweets {
+    id
+    text
+  },
+  tweet(id:"1"){
+    id,
+    text
+  }
+},
+mutation {
+  postTweet(text: "i'm new", userId: "3") {    
+    id,
+    text
+  }
+}
+
+Resolver 함수에는 parent(root or source), args, context, info 의 네 가지 인수가 순서대로 전달됩니다.
+```
+User: {
+fullName: (parent, args, context, info) => {
+return "hello";
+},
+},
+```
+
+      User: {
+        fullName(root){
+          console.log(root);
+          return "hello";
+        }
+      }
+
+      >> 
+      { id: '1', firstName: 'nico', lastName: 'las' }
+      { id: '2', firstName: 'Elon', lastName: 'Mask' }
+  
+  //https://studio.apollographql.com/sandbox/schema/reference
+  //https://altair.sirmuel.design/
+
+
+  json검증을 위해서
+  콘솔창에 const aa = {};
+  > Object.keys(aa)
+  하면 정제된 키값들이 나옴?ㅇㅅㅇ
+  
